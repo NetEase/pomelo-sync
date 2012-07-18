@@ -40,5 +40,5 @@ sync.exec('updateUser',10003,user1);
 
 user1.x = 999;
 
-//sync.flush('updateUser',10003,user1);
+sync.flush('updateUser',10003,user1);
 
