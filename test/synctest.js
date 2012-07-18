@@ -25,15 +25,20 @@ user1.uid = 10003;
 user1.sceneId = 1;
 var resp = sync.set(key,user1);
 
-sync.flush('updateUser',user1);
+//sync.flush('updateUser',user1);
 
-sync.exec('updateUser',10003,user1);
+//sync.exec('updateUser',10003,user1);
 
 sync.select('selectUser',10004,function(err,data){
 	console.log(err + ' ' + data);
 });
 
 user1.x = 888;
+user1.y = 777;
 
 sync.exec('updateUser',10003,user1);
+
+user1.x = 999;
+
+//sync.flush('updateUser',10003,user1);
 

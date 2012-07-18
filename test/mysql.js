@@ -1,7 +1,7 @@
 var Client = require('mysql').Client;
 var client = new Client();
 
-client.host = '192.168.130.107';
+client.host = '192.168.145.18';
 client.user = 'xy';
 client.password = 'dev';
 client.database = 'Pomelo';
