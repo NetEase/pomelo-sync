@@ -36,9 +36,14 @@ sync.select('selectUser',10004,function(err,data){
 user1.x = 888;
 user1.y = 777;
 
+console.log(' count ' + sync.rewriter.count);
+
 sync.exec('updateUser',10003,user1);
 
 user1.x = 999;
 
-sync.flush('updateUser',10003,user1);
+//sync.flush('updateUser',10003,user1);
 
+setInterval(function(){
+ console.log(' count 2 ' + sync.isDone());
+},1000);
