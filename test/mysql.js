@@ -1,7 +1,7 @@
 var Client = require('mysql').Client;
 var client = new Client();
 
-client.host = '192.168.145.18';
+client.host = 'pomelo.163.com';
 client.user = 'xy';
 client.password = 'dev';
 client.database = 'Pomelo';
@@ -9,7 +9,7 @@ client.database = 'Pomelo';
 queryHero = function(limit,offset,cb){
   var users = [];
   var sql = 'SELECT * FROM Hero  limit ? offset ? ';
-  var args = [parseInt(limit),parseInt(offset)];
+  var args = [limit,offset];
   client.query(sql,args,function selectCb(error, results, fields) {
       if (error) {
           console.log('queryHero Error: ' + error.message);

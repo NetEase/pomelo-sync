@@ -13,7 +13,7 @@ opt.write = map;
 opt.client = dbclient;
 opt.interval = 5000;
 opt.aof = true;
-var sync = new MemDatabase(this,opt) ;
+var sync = new MemDatabase(opt) ;
 var key = 'user_key';
 var User = function User(name){
 	this.name = name;
@@ -24,6 +24,8 @@ user1.x = user1.y = 999;
 user1.uid = 10003;
 user1.sceneId = 1;
 var resp = sync.set(key,user1);
+
+console.log('resp %j' , sync.get(key));
 
 //sync.flush('updateUser',user1);
 

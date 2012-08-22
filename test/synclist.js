@@ -7,7 +7,7 @@ updatewrite = function(client,val,cb){
 	      if(err !== null){
 	        console.error('write mysql failed!　' + sql + ' ' + JSON.stringify(val));
 	     } else {
-	    	  console.info('write mysql success! flash dbok ' + sql + ' ' + JSON.stringify(val));
+           console.info('write mysql success! flash dbok ' + sql + ' ' + JSON.stringify(val));
            cb();
 	    }
 	    });
@@ -20,9 +20,9 @@ selectUser = function(client,val,cb){
   client.query(sql, args, function(err, res){
     if(err !== null){
       console.error('selectUser mysql failed!　' + sql + ' ' + JSON.stringify(val));
-  	  cb(null,'-1');
+      cb(null,'-1');
    } else {
-  	  console.info('selectUser mysql success! flash dbok ' + sql + ' ' + JSON.stringify(val));
+      console.info('selectUser mysql success! flash dbok ' + sql + ' ' + JSON.stringify(val));
       cb(null,res[0]['name']);
   }
   });
