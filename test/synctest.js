@@ -1,19 +1,14 @@
-try {
-  var MemDatabase = require('dbsync');
-} catch (err) {
-  var MemDatabase = require('../');
-}
+var DataSync = require('../');
 
-var map = require('./synclist').map;
 var dbclient = require('./mysql').client;
 
 
 var opt = {};
-opt.write = map;
+opt.mappingPath = 'test/mapping';
 opt.client = dbclient;
 opt.interval = 5000;
-opt.aof = true;
-var sync = new MemDatabase(opt) ;
+opt.aof = false;
+var sync = new DataSync(opt);
 var key = 'user_key';
 var User = function User(name){
 	this.name = name;
@@ -31,7 +26,7 @@ console.log('resp %j' , sync.get(key));
 
 //sync.exec('updateUser',10003,user1);
 
-sync.select('selectUser',10004,function(err,data){
+sync.select('bag.selectUser',10004,function(err,data){
 	console.log(err + ' ' + data);
 });
 
@@ -40,7 +35,7 @@ user1.y = 777;
 
 console.log(' count ' + sync.rewriter.count);
 
-sync.exec('updateUser',10003,user1);
+sync.exec('player.updateUser',10003,user1);
 
 user1.x = 999;
 
