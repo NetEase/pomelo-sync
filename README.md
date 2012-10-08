@@ -31,10 +31,10 @@ var updateUser = function(dbclient,val) {
 var dbclient = {};//db connection etc;
 var id = 10001;
 var optKey = 'updateUser';
-var path = {optKey:updateUer}; //key function mapping 
-opt.write = path;
+var mapping = {optKey:updateUer}; //key function mapping 
+opt.mapping = mapping;
 opt.client = dbclient;
-opt.interval = opts.interval || 60 * 1000;
+opt.interval = 2000;
 
 var sync = new DBsync(options) ;
 sync.exec(optKey,id,{name:'hello'});
@@ -66,7 +66,7 @@ return false;
   
 
 ##Notice 
-system default sync time is 1000 * 60 * 3,
+system default sync time is 1000 * 60,
 if you use mysql or redis sync,you should set options.client,the file sync is default but it doesn't load in current.
 Mysql OR mapping in this modules do not support,user should realize it self.
 

@@ -4,7 +4,7 @@ var dbclient = require('./mysql').client;
 
 
 var opt = {};
-opt.mappingPath = 'test/mapping';
+opt.mappingPath = __dirname+ '/mapping';
 opt.client = dbclient;
 opt.interval = 5000;
 opt.aof = false;
