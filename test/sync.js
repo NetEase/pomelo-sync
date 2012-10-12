@@ -1,12 +1,12 @@
 var DataSync = require('../');
 
-var dbclient = require('./mysql').client;
+var dbclient = require('./lib/mysql').client;
 
 
 var opt = {};
 opt.mappingPath = __dirname+ '/mapping';
 opt.client = dbclient;
-opt.interval = 5000;
+opt.interval = 1000 * 10;
 opt.aof = false;
 var sync = new DataSync(opt);
 var key = 'user_key';
@@ -22,12 +22,8 @@ var resp = sync.set(key,user1);
 
 console.log('resp %j' , sync.get(key));
 
-//sync.flush('updateUser',user1);
-
-//sync.exec('updateUser',10003,user1);
-
-sync.select('bag.selectUser',10004,function(err,data){
-	console.log(err + ' ' + data);
+sync.execSync('bag.selectUser',10004,function(err,data){
+	console.log(err + '  select data ' + data);
 });
 
 user1.x = 888;
@@ -39,8 +35,6 @@ sync.exec('player.updateUser',10003,user1);
 
 user1.x = 999;
 
-//sync.flush('updateUser',10003,user1);
-
 setInterval(function(){
- console.log(' count 2 ' + sync.isDone());
+ console.log(' count:' + sync.rewriter.count + ' isDone: ' + sync.isDone());
 },1000);
