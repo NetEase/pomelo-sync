@@ -14,15 +14,13 @@ Data sync features include timer sync,set,get,mset,mget,hset,hget,incr,decr,flus
 
 ##Installation
 ```
-npm install data-sync
+npm install pomelo-sync
 ```
 
 ##Usage
 ``` javascript
 
-var DBsync = require('dbsync');
-
-var opt = opts || {};
+var opt = opt || {};
 
 var updateUser = function(dbclient,val) {
     console.log('mock save %j',val);
@@ -36,7 +34,8 @@ opt.mapping = mapping;
 opt.client = dbclient;
 opt.interval = 2000;
 
-var sync = new DBsync(options) ;
+var Sync = require('pomelo-sync');
+var sync = new Sync(opt) ;
 sync.exec(optKey,id,{name:'hello'});
 
 ``` 

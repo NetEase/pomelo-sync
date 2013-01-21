@@ -1,6 +1,6 @@
 {
-  "name": "data-sync", 
-  "version": "0.0.14",
+  "name": "pomelo-sync", 
+  "version": "0.0.3",
   "dependencies": {
   }
 }

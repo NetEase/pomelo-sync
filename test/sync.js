@@ -4,11 +4,17 @@ var dbclient = require('./lib/mysql').client;
 
 
 var opt = {};
-opt.mappingPath = __dirname+ '/mapping';
+var mappingPath = __dirname+ '/mapping';
 opt.client = dbclient;
 opt.interval = 1000 * 10;
 opt.aof = false;
 var sync = new DataSync(opt);
+console.log('before loading ')
+sync.mapping = sync.loadMapping(mappingPath);
+
+
+console.log(sync.mapping);
+
 var key = 'user_key';
 var User = function User(name){
 	this.name = name;
@@ -35,6 +41,8 @@ sync.exec('player.updateUser',10003,user1);
 
 user1.x = 999;
 
+sync.flush('player.updateUser',10003,user1);
+ 
 setInterval(function(){
  console.log(' count:' + sync.rewriter.count + ' isDone: ' + sync.isDone());
 },1000);
